@@ -27,10 +27,23 @@ body {
   font-size: 14px;
   line-height: 1.45;
   color: var(--text);
+  overflow-x: hidden;
   background:
     radial-gradient(circle at 8% 0%, rgba(63, 141, 149, 0.12), transparent 34%),
     radial-gradient(circle at 92% 2%, rgba(199, 139, 61, 0.1), transparent 32%),
     linear-gradient(180deg, #f8fbff 0%, #eef3f9 42%, #e8eff8 100%);
+}
+
+body.nav-open {
+  overflow: hidden;
+}
+
+body.nav-open::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 14, 26, 0.42);
+  z-index: 999;
 }
 
 h1,
@@ -316,6 +329,7 @@ textarea:focus {
 
 .table-wrap {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   animation: fade-up 0.52s ease both;
 }
 
@@ -1476,7 +1490,9 @@ tbody tr:hover {
   }
 
   .sidebar {
+    width: min(84vw, 320px);
     transform: translateX(-100%);
+    box-shadow: 24px 0 48px rgba(4, 14, 30, 0.48);
   }
 
   .sidebar.open {
@@ -1488,7 +1504,9 @@ tbody tr:hover {
   }
 
   .top-header {
+    height: 64px;
     padding-left: 16px;
+    padding-right: 12px;
     justify-content: flex-end;
   }
 
@@ -1499,7 +1517,28 @@ tbody tr:hover {
 
   .main-content {
     margin-left: 0;
+    margin-top: 64px;
     padding: 16px;
+  }
+
+  .card {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .module-top {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .module-top .spacer {
+    display: none;
+  }
+
+  .module-top .btn,
+  .module-top .input,
+  .module-top select {
+    width: 100%;
   }
 
   .kpi-grid,
@@ -1521,11 +1560,36 @@ tbody tr:hover {
   }
 
   .modal-card {
-    padding: 24px;
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .modal-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .modal-actions .btn {
+    width: 100%;
+  }
+
+  .toast-stack {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    width: auto;
   }
 
   .btn {
     min-height: 40px;
+  }
+
+  tbody td:last-child {
+    white-space: normal;
+  }
+
+  .users-actions-wrap {
+    flex-wrap: wrap;
   }
 
   .account-profile-top {
@@ -1544,5 +1608,55 @@ tbody tr:hover {
 
   .account-password-confirm {
     grid-column: 1;
+  }
+}
+
+@media (max-width: 560px) {
+  .top-header {
+    padding-left: 12px;
+  }
+
+  .top-header .btn {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .main-content {
+    padding: 12px;
+  }
+
+  .users-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .login-right {
+    padding: 12px;
+  }
+
+  .login-card {
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .login-card h2 {
+    font-size: 26px;
+  }
+
+  .login-card-subtitle {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .login-card .input {
+    min-height: 48px;
+    border-radius: 14px;
+    font-size: 16px;
+    padding: 10px 14px;
+  }
+
+  .login-card .btn {
+    font-size: 18px;
+    min-height: 46px;
+    border-radius: 14px;
   }
 }
