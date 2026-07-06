@@ -54,8 +54,14 @@ Free Public Deployment (No Paid Domain)
 6. In Web Service Environment Variables, add:
    - SECRET_KEY: generate a random long string
    - DATABASE_URL: paste Render Postgres External Database URL
+   - ADMIN_USERNAME: initial admin username (for first deployment only)
+   - ADMIN_EMAIL: initial admin email (for first deployment only)
+   - ADMIN_PASSWORD: initial admin password (must pass app password policy)
+   - ADMIN_FIRST_NAME: optional, defaults to System
+   - ADMIN_LAST_NAME: optional, defaults to Admin
 7. Deploy. Your app will be available at a Render subdomain link (for example: https://your-app-name.onrender.com).
 
 Important for free plans
 - Free instances may sleep after inactivity and wake up on first request.
 - You do not need to buy a domain; the Render subdomain is enough to share publicly.
+- After the first successful login, remove ADMIN_PASSWORD from environment variables and redeploy.

@@ -1,4 +1,5 @@
 import getpass
+import os
 
 from flask import Flask, redirect, request, session, url_for
 from flask_login import LoginManager, current_user
@@ -125,6 +126,39 @@ def ensure_schema_updates():
     db.session.commit()
 
 
+def ensure_initial_admin_from_env():
+    username = (os.environ.get("ADMIN_USERNAME") or "").strip()
+    email = (os.environ.get("ADMIN_EMAIL") or "").strip()
+    password = os.environ.get("ADMIN_PASSWORD") or ""
+
+    if not username or not email or not password:
+        return
+
+    first_name = (os.environ.get("ADMIN_FIRST_NAME") or "System").strip() or "System"
+    last_name = (os.environ.get("ADMIN_LAST_NAME") or "Admin").strip() or "Admin"
+
+    if User.query.filter((User.username == username) | (User.email == email)).first():
+        return
+
+    error = ensure_password_or_error(password)
+    if error:
+        print(f"Initial admin not created: {error}")
+        return
+
+    user = User(
+        first_name=first_name,
+        last_name=last_name,
+        username=username,
+        email=email,
+        role="Administrator",
+        status="Active",
+    )
+    user.set_password(password)
+    db.session.add(user)
+    db.session.commit()
+    print(f"Initial administrator created: {username}")
+
+
 @app.cli.command("init-db")
 def init_db():
     with app.app_context():
@@ -173,4 +207,5 @@ if __name__ == "__main__":
     with app.app_context():
         db.create_all()
         ensure_schema_updates()
+        ensure_initial_admin_from_env()
     app.run(debug=True)
