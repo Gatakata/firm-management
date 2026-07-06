@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="must-reset" content="{{ 'true' if must_reset_notice else 'false' }}">
+  <title>VCCA Firm Management Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="top-header">
+    <h1>VCCA Firm Management Platform</h1>
+    <form id="logout-form" method="post" action="{{ url_for('auth.logout') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button type="submit" class="btn btn-secondary">Logout</button>
+    </form>
+  </header>
+
+  <aside class="sidebar" id="sidebar">
+    <button class="hamburger" id="sidebar-toggle" aria-label="Toggle navigation">Menu</button>
+    <div class="sidebar-brand">
+      <div class="sidebar-title">VCCA Platform</div>
+    </div>
+    <nav id="nav-list"></nav>
+  </aside>
+
+  <main class="main-content" id="main-content">
+    <section class="card" id="module-header"></section>
+    <section id="module-content"></section>
+  </main>
+
+  <div class="modal-overlay" id="modal-overlay" hidden>
+    <div class="modal-card" id="modal-card"></div>
+  </div>
+
+  <div id="toast-stack"></div>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

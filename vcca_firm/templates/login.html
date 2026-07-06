@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login | VCCA Firm Management Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="login-body">
+  <div class="login-layout">
+    <section class="login-left">
+      <div class="login-brand-wrap">
+        <span class="login-eyebrow">Operational Command Centre</span>
+        <h1>VCCA Firm Management Platform</h1>
+        <p class="login-subtitle">Complete client lifecycle management for professional firms</p>
+        <ul class="feature-list">
+          <li>Unified prospect-to-client conversion workflow</li>
+          <li>Integrated project, compliance, and invoice controls</li>
+          <li>Live KPI dashboard with revenue and debtor insights</li>
+        </ul>
+        <div class="login-kpis">
+          <div class="login-kpi-chip"><strong>360</strong><span>Client Lifecycle View</span></div>
+          <div class="login-kpi-chip"><strong>Secure</strong><span>Role-Based Access</span></div>
+          <div class="login-kpi-chip"><strong>Live</strong><span>Operational Dashboards</span></div>
+        </div>
+      </div>
+      <footer>(c) 2026 Victoria Chartered Certified Accountants</footer>
+    </section>
+    <section class="login-right">
+      <div class="login-card">
+        <h2>Welcome back</h2>
+        <p class="login-card-subtitle">Sign in to continue to your firm operations dashboard.</p>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert-banner alert-error">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        <form method="post" class="login-form">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <div class="login-field">
+            <label class="label" for="username">Username</label>
+            <input class="input" id="username" name="username" required>
+          </div>
+          <div class="login-field">
+            <label class="label" for="password">Password</label>
+            <input class="input" id="password" name="password" type="password" required>
+          </div>
+          <button class="btn btn-primary full-width" type="submit">Sign In</button>
+        </form>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
