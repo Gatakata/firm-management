@@ -95,9 +95,13 @@ function navHtml(item, active) {
 
 function setSidebarOpen(isOpen) {
   const sidebar = document.getElementById("sidebar");
+  const sidebarToggle = document.getElementById("sidebar-toggle");
   if (!sidebar) return;
   sidebar.classList.toggle("open", Boolean(isOpen));
   document.body.classList.toggle("nav-open", Boolean(isOpen));
+  if (sidebarToggle) {
+    sidebarToggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
+  }
 }
 
 function closeSidebar() {

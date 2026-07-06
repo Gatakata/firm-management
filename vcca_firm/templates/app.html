@@ -14,6 +14,7 @@
 </head>
 <body>
   <header class="top-header">
+    <button class="mobile-menu-btn" id="sidebar-toggle" aria-label="Open navigation menu" aria-controls="sidebar" aria-expanded="false">Menu</button>
     <h1>VCCA Firm Management Platform</h1>
     <form id="logout-form" method="post" action="{{ url_for('auth.logout') }}">
       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
@@ -22,7 +23,6 @@
   </header>
 
   <aside class="sidebar" id="sidebar">
-    <button class="hamburger" id="sidebar-toggle" aria-label="Toggle navigation">Menu</button>
     <div class="sidebar-brand">
       <div class="sidebar-title">VCCA Platform</div>
     </div>

@@ -221,6 +221,11 @@ textarea:focus {
   z-index: 1000;
 }
 
+.mobile-menu-btn {
+  display: none;
+  min-width: 74px;
+}
+
 .top-header h1 {
   color: #f6f9ff;
   font-size: 20px;
@@ -1408,6 +1413,11 @@ tbody tr:hover {
   background: #1d4b82;
 }
 
+.login-body {
+  min-height: 100dvh;
+  overflow-y: auto;
+}
+
 .card:nth-child(2) {
   animation-delay: 0.05s;
 }
@@ -1507,12 +1517,31 @@ tbody tr:hover {
     height: 64px;
     padding-left: 16px;
     padding-right: 12px;
-    justify-content: flex-end;
+    justify-content: space-between;
+    gap: 10px;
   }
 
   .top-header h1,
-  .header-logo {
+  .header-logo,
+  .hamburger {
     display: none;
+  }
+
+  .mobile-menu-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  #logout-form {
+    margin-left: auto;
   }
 
   .main-content {
@@ -1658,5 +1687,14 @@ tbody tr:hover {
     font-size: 18px;
     min-height: 46px;
     border-radius: 14px;
+  }
+
+  .login-layout {
+    min-height: 100dvh;
+  }
+
+  .login-right {
+    align-content: center;
+    min-height: 100dvh;
   }
 }
